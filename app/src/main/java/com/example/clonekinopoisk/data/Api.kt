@@ -4,6 +4,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface Api {
 
@@ -85,6 +86,14 @@ interface Api {
         "Content-Type: application/json")
     suspend fun getSimilarsData(@Path("id") id :String): Response<FilmsResponse>
 
-
+    // поиск по ключевому слову
+    @GET("v2.1/films/search-by-keyword")
+    @Headers(
+        "X-API-KEY: 94465803-dd38-480b-a973-9f3b0062aec9",
+        "Content-Type: application/json")
+    suspend fun searchByKeyword(
+        @Query("keyword") keyword: String,
+        @Query("page") page: Int
+    ):Response<SearchResponse>
 
 }
