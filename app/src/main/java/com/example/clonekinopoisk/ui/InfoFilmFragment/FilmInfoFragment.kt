@@ -1,0 +1,148 @@
+package com.example.clonekinopoisk.ui.InfoFilmFragment
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.example.clonekinopoisk.R
+import com.example.clonekinopoisk.data.Film
+import com.example.clonekinopoisk.databinding.FragmentFilmInfoBinding
+import com.example.clonekinopoisk.ui.ListFilmsAdapter
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
+class FilmInfoFragment: Fragment() {
+
+    private var binding: FragmentFilmInfoBinding? = null
+    private val viewModel: FlmInfoViewModel by viewModels()
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentFilmInfoBinding.inflate(inflater)
+        return binding?.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel.URLimage.observe(viewLifecycleOwner) { url ->
+            binding?.mainImageFilm?.run {
+                Glide.with(requireContext())
+                    .load(url)
+                    .into(this)
+            }
+        }
+
+        viewModel.NameFilmOriginal.observe(viewLifecycleOwner){
+            if(it.isNullOrEmpty()){
+                viewModel.NameFilmRussen.observe(viewLifecycleOwner){ nameRus->
+                    binding?.nameFilm?.text = nameRus.toString()
+                }
+            }else{
+                binding?.nameFilm?.text = it.toString()
+            }
+        }
+
+        viewModel.rating.observe(viewLifecycleOwner){
+            if(it.isNullOrEmpty()){
+                binding?.ratingFilmInfo?.text = " "
+            }else{
+                binding?.ratingFilmInfo?.visibility = View.VISIBLE
+                binding?.ratingFilmInfo?.text = it.toString()
+            }
+        }
+
+        viewModel.year.observe(viewLifecycleOwner){
+            if(it.isNullOrEmpty()){
+                binding?.textViewYear?.text = "N/A"
+            }else{
+                binding?.textViewYear?.text = it.toString()
+            }
+        }
+        viewModel.shortDescription.observe(viewLifecycleOwner){
+            if(it.isNullOrEmpty()){
+                binding?.descriptionShort?.text = "N/A"
+            }else{
+                binding?.descriptionShort?.text = it.toString()
+            }
+        }
+        viewModel.longDescription.observe(viewLifecycleOwner){
+            if(it.isNullOrEmpty()){
+                binding?.descriptionLong?.text = "N/A"
+            }else{
+                binding?.descriptionLong?.text = it.toString()
+            }
+        }
+        viewModel.ageLimits.observe(viewLifecycleOwner){
+            if(it.isNullOrEmpty()){
+                binding?.age?.text = "N/A"
+            }else{
+                binding?.age?.text = it.toString()
+            }
+        }
+//        viewModel.listGenres.observe(viewLifecycleOwner){
+//            if(it.isNullOrEmpty()){
+//                binding?.genre1?.text = "N/A"
+//            }else{
+//                binding?.genre1?.text = it.toString()
+//            }
+//        }
+        viewModel.listRelated.observe(viewLifecycleOwner){
+            loadListRelated(it)
+        }
+
+//        viewModel.listPerson.observe(viewLifecycleOwner){
+//            loadListStuff(it)
+//        }
+
+
+
+        arguments?.getString("id")?.run {
+            viewModel.getFilmInfo(this)
+        }
+    }
+
+    private fun loadListRelated(list:List<Film>){
+        binding?.containerRelated?.run{
+            layoutManager = LinearLayoutManager(
+                requireContext(),
+                LinearLayoutManager.HORIZONTAL,
+                false
+            )
+            adapter = ListFilmsAdapter{
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.containerView, FilmInfoFragment().apply {
+                        arguments = bundleOf("id" to id)
+                    })
+                    .addToBackStack(null)
+                    .commit()
+            }
+            (adapter as ListFilmsAdapter).submitList(list)
+        }
+    }
+
+//    private fun loadListStuff(list: List<PersonInStaff>){
+//        if (list.isNullOrEmpty()){
+//
+//        }else{
+//            binding?.containerStaff?.run{
+//                layoutManager = LinearLayoutManager(
+//                    requireContext(),
+//                    LinearLayoutManager.HORIZONTAL,
+//                    false
+//                )
+//                adapter = PersonInStuffAdapter()
+//                (adapter as PersonInStuffAdapter).submitList(list)
+//            }
+//        }
+//    }
+
+}
