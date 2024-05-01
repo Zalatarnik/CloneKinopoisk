@@ -4,6 +4,8 @@ plugins {
     id ("org.jetbrains.kotlin.kapt")
     id("com.google.dagger.hilt.android")
     id("androidx.navigation.safeargs")
+    id("com.google.gms.google-services")
+
 }
 
 android {
@@ -70,6 +72,11 @@ dependencies {
     val nav_version = "2.7.7"
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+
+    implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
+    implementation("com.google.firebase:firebase-auth")
+
+
 
 
     testImplementation("junit:junit:4.13.2")
