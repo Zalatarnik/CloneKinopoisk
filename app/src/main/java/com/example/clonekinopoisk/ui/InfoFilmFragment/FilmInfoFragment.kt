@@ -1,6 +1,9 @@
 package com.example.clonekinopoisk.ui.InfoFilmFragment
 
+import android.media.browse.MediaBrowser
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +17,10 @@ import com.example.clonekinopoisk.R
 import com.example.clonekinopoisk.data.Film
 import com.example.clonekinopoisk.databinding.FragmentFilmInfoBinding
 import com.example.clonekinopoisk.ui.ListFilmsAdapter
+import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.SimpleExoPlayer
+import com.google.android.exoplayer2.source.DefaultMediaSourceFactory
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.database.database
@@ -35,6 +42,7 @@ class FilmInfoFragment: Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(view, savedInstanceState)
 
         val userId = Firebase.auth.currentUser?.uid
@@ -169,7 +177,36 @@ class FilmInfoFragment: Fragment() {
         arguments?.getString("id")?.run {
             viewModel.getFilmInfo(this)
         }
+
+
+
+        viewModel.videForFilm.observe(viewLifecycleOwner) { list ->
+            val videoUrl = viewModel.getUrlVideosFromList(list)
+            Log.e("Log1", videoUrl.toString())
+
+            val player = SimpleExoPlayer.Builder(requireContext()).build()
+            binding?.playerView?.player = player
+
+            val mediaItem = MediaItem.fromUri(videoUrl.toString())
+            val mediaSource = DefaultMediaSourceFactory(
+                DefaultHttpDataSource.Factory()
+            ).createMediaSource(mediaItem)
+
+            player.setMediaSource(mediaSource)
+            player.prepare()
+            player.playWhenReady = true
+        }
+
+
+
+
     }
+
+//    override fun onStop() {
+//        super.onStop()
+//        player.release()
+//    }
+
 
     private fun loadListRelated(list: List<Film>) {
         binding?.containerRelated?.run {
@@ -205,6 +242,7 @@ class FilmInfoFragment: Fragment() {
 //            }
 //        }
 //    }
+
 
     }
 }

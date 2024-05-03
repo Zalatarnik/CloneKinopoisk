@@ -8,11 +8,14 @@ import com.example.clonekinopoisk.data.Film
 import com.example.clonekinopoisk.data.FilmFullInfo
 import com.example.clonekinopoisk.domain.FilmsRepository
 import com.example.clonekinopoisk.data.FilmsResponse
+import com.example.clonekinopoisk.data.VideoForFilm
+import com.example.clonekinopoisk.data.VideoForFilmResponse
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import okhttp3.internal.filterList
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -35,10 +38,16 @@ class FlmInfoViewModel @Inject constructor(
     val ageLimits = MutableLiveData<String>()
 
     val listRelated = MutableLiveData<ArrayList<Film>>()
+    val videForFilm = MutableLiveData<ArrayList<VideoForFilm>>()
     // val listGenres = MutableLiveData<ArrayList<String>>()
     // val listPerson = MutableLiveData<List<PersonInStaff>>()
 
 
+    fun getUrlVideosFromList(videoList: ArrayList<VideoForFilm>):  String? {
+        val youtubeVideos = videoList.filterList { siteVideo == "YOUTUBE"}
+//        return youtubeVideos.firstOrNull()?.urlVideo
+        return videoList.firstOrNull()?.urlVideo
+    }
 
     fun getFilmInfo(id: String) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -46,6 +55,7 @@ class FlmInfoViewModel @Inject constructor(
             val idRead = id.toInt()
             val responseRelated: Response<FilmsResponse> = repository.getRelated(id)
 //            val responsePerson: Response<PersonStuffListResponse> = repository.getStuff(idRead)
+            val responseVideo: Response<VideoForFilmResponse> = repository.getVideo(id)
 
 
 
@@ -64,6 +74,9 @@ class FlmInfoViewModel @Inject constructor(
 
                 ClassForFavourite.postValue(response.body())
                 idThis.postValue(response.body()?.id)
+                videForFilm.postValue(responseVideo.body()?.items)
+
+
 //                listGenres.postValue(response.body()?.genres)
 //                listPerson.postValue(responsePerson.body()?.people)
 

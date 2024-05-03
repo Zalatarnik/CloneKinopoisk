@@ -78,6 +78,8 @@ dependencies {
     implementation("com.google.firebase:firebase-database")
 
 
+    implementation("com.google.android.exoplayer:exoplayer:2.19.1")
+
 
 
     testImplementation("junit:junit:4.13.2")
