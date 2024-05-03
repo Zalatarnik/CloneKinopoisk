@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.clonekinopoisk.ListFavouriteFilmsAdapter
@@ -76,12 +77,9 @@ class FavouriteFragment: Fragment() {
         recyclerView?.apply {
             layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = ListFavouriteFilmsAdapter { id ->
-                parentFragmentManager.beginTransaction()
-                    .replace(R.id.containerView, FilmInfoFragment().apply {
-                        arguments = bundleOf("id" to id)
-                    })
-                    .addToBackStack(null)
-                    .commit()
+                findNavController()
+                    .navigate(R.id.action_searchMenu_to_filmInfoFragment2,
+                        bundleOf("id" to id))
             }
             (adapter as ListFavouriteFilmsAdapter).submitList(list)
         }

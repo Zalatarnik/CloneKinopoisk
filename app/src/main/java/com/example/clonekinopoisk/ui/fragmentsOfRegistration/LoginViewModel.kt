@@ -1,9 +1,13 @@
 package com.example.clonekinopoisk.ui.fragmentsOfRegistration
 
+import android.content.SharedPreferences
+import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.clonekinopoisk.domain.FilmsRepository
+import com.example.clonekinopoisk.domain.SharedPreferencesRepository
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
@@ -14,6 +18,8 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel@Inject constructor(
 ) : ViewModel() {
+    @Inject
+    lateinit var sharedPreferencesRepository: SharedPreferencesRepository
 
 
     private val _emailErrorForRead = MutableLiveData<String?>()
@@ -50,7 +56,7 @@ class LoginViewModel@Inject constructor(
                 if (task.isSuccessful) {
                     _registrationStateForRead.value = RegistrationState.Success
                     _navigationEventForRead.value = NavigationEvent.NavigateToMainFragment
-
+                    sharedPreferencesRepository.setUserEmail(email)
                 } else {
                     _registrationStateForRead.value = RegistrationState.Error("Что-то пошло не так")
                 }

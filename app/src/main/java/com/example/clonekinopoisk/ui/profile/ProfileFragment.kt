@@ -51,19 +51,19 @@ class ProfileFragment: Fragment() {
                                 Toast.LENGTH_SHORT).show()
                         }
                     }
-                parentFragmentManager.beginTransaction()
-                    .replace(R.id.containerView, LoginFragment())
-                    .addToBackStack(null)
-                    .commit()
+//                parentFragmentManager.beginTransaction()
+//                    .replace(R.id.containerView, LoginFragment())
+//                    .addToBackStack(null)
+//                    .commit()
 
             }
 
             binding?.buttonSignOut?.setOnClickListener {
                 Firebase.auth.signOut()
-                parentFragmentManager.beginTransaction()
-                    .replace(R.id.containerView, LoginFragment())
-                    .addToBackStack(null)
-                    .commit()
+//                parentFragmentManager.beginTransaction()
+//                    .replace(R.id.containerView, LoginFragment())
+//                    .addToBackStack(null)
+//                    .commit()
 
             }
         }

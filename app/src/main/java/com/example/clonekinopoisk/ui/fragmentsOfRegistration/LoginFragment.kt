@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.clonekinopoisk.R
 import com.example.clonekinopoisk.databinding.FragmentLoginBinding
 import com.example.clonekinopoisk.ui.InfoFilmFragment.FilmInfoFragment
@@ -69,18 +70,13 @@ class LoginFragment: Fragment() {
 
         viewModel.navigationEvent.observe(viewLifecycleOwner) {even ->
             if(even == NavigationEvent.NavigateToMainFragment) {
-                parentFragmentManager.beginTransaction()
-                    .replace(R.id.containerView, FavouriteFragment())
-                    .addToBackStack(null)
-                    .commit()
+               findNavController().navigate(R.id.action_loginFragment2_to_fragmentWithBottomMenu)
             }
         }
 
         binding?.buttonSwitching?.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.containerView, SignUpFragment())
-                .addToBackStack(null)
-                .commit()
+            findNavController().navigate(R.id.action_loginFragment2_to_signUpFragment3)
+
         }
     }
 }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeMenu"
+        android:enabled="true"
+        android:icon="@drawable/ic_facebook"
+        android:title="home"/>
+
+    <item
+        android:id="@+id/searchMenu"
+        android:enabled="true"
+        android:icon="@drawable/ic_facebook"
+        android:title="search" />
+    <item
+        android:id="@+id/favouriteMenu"
+        android:enabled="true"
+        android:icon="@drawable/ic_facebook"
+        android:title="favourite" />
+    <item
+        android:id="@+id/profileMenu"
+        android:enabled="true"
+        android:icon="@drawable/ic_facebook"
+        android:title="profile" />
+
+
+
+</menu>

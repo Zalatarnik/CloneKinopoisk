@@ -40,7 +40,7 @@ class FilmInfoFragment: Fragment() {
         val userId = Firebase.auth.currentUser?.uid
         val databaseReference = Firebase.database.reference
         var like = false
-        viewModel.idThis.observe(viewLifecycleOwner){
+        viewModel.idThis.observe(viewLifecycleOwner) {
             val pathToCheck = "favourite/$userId/favouriteFilms/$it"
 
             databaseReference.child(pathToCheck).get().addOnCompleteListener { task ->
@@ -49,13 +49,18 @@ class FilmInfoFragment: Fragment() {
                         Toast.makeText(requireContext(), "Child exists!", Toast.LENGTH_SHORT).show()
                         like = true
                     } else {
-                        Toast.makeText(requireContext(), "Child does not exist", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "Child does not exist", Toast.LENGTH_SHORT)
+                            .show()
                         Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
                         like = false
 
                     }
                 } else {
-                    Toast.makeText(requireContext(), "Error checking child existence", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        "Error checking child existence",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }
@@ -70,76 +75,78 @@ class FilmInfoFragment: Fragment() {
             }
         }
 
-        viewModel.NameFilmOriginal.observe(viewLifecycleOwner){
-            if(it.isNullOrEmpty()){
-                viewModel.NameFilmRussen.observe(viewLifecycleOwner){ nameRus->
+        viewModel.NameFilmOriginal.observe(viewLifecycleOwner) {
+            if (it.isNullOrEmpty()) {
+                viewModel.NameFilmRussen.observe(viewLifecycleOwner) { nameRus ->
                     binding?.nameFilm?.text = nameRus.toString()
                 }
-            }else{
+            } else {
                 binding?.nameFilm?.text = it.toString()
             }
         }
 
-        viewModel.rating.observe(viewLifecycleOwner){
-            if(it.isNullOrEmpty()){
+        viewModel.rating.observe(viewLifecycleOwner) {
+            if (it.isNullOrEmpty()) {
                 binding?.ratingFilmInfo?.text = " "
-            }else{
+            } else {
                 binding?.ratingFilmInfo?.visibility = View.VISIBLE
                 binding?.ratingFilmInfo?.text = it.toString()
             }
         }
 
-        viewModel.year.observe(viewLifecycleOwner){
-            if(it.isNullOrEmpty()){
+        viewModel.year.observe(viewLifecycleOwner) {
+            if (it.isNullOrEmpty()) {
                 binding?.textViewYear?.text = "N/A"
-            }else{
+            } else {
                 binding?.textViewYear?.text = it.toString()
             }
         }
 
         binding?.buttonFavourite?.setOnClickListener {
-            viewModel.ClassForFavourite.observe(viewLifecycleOwner){
+            viewModel.ClassForFavourite.observe(viewLifecycleOwner) {
 
 
-                if(!userId.isNullOrEmpty()){
-                    if(like==false){
+                if (!userId.isNullOrEmpty()) {
+                    if (like == false) {
                         Firebase.database.getReference("favourite")
                             .child(userId)
                             .child("favouriteFilms")
                             .child(it.id)
                             .setValue(it)
-                        Toast.makeText(requireContext(),"Успешно добавлено", Toast.LENGTH_SHORT).show()
-                    }else{
+                        Toast.makeText(requireContext(), "Успешно добавлено", Toast.LENGTH_SHORT)
+                            .show()
+                    } else {
                         Firebase.database.getReference("favourite")
                             .child(userId)
                             .child("favouriteFilms")
                             .child(it.id)
                             .removeValue()
-                        Toast.makeText(requireContext(),"Успешно удалено", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "Успешно удалено", Toast.LENGTH_SHORT)
+                            .show()
                     }
 
                 }
 
             }
         }
-        viewModel.shortDescription.observe(viewLifecycleOwner){
-            if(it.isNullOrEmpty()){
+        viewModel.shortDescription.observe(viewLifecycleOwner) {
+            if (it.isNullOrEmpty()) {
                 binding?.descriptionShort?.text = "N/A"
-            }else{
+            } else {
                 binding?.descriptionShort?.text = it.toString()
             }
         }
-        viewModel.longDescription.observe(viewLifecycleOwner){
-            if(it.isNullOrEmpty()){
+        viewModel.longDescription.observe(viewLifecycleOwner) {
+            if (it.isNullOrEmpty()) {
                 binding?.descriptionLong?.text = "N/A"
-            }else{
+            } else {
                 binding?.descriptionLong?.text = it.toString()
             }
         }
-        viewModel.ageLimits.observe(viewLifecycleOwner){
-            if(it.isNullOrEmpty()){
+        viewModel.ageLimits.observe(viewLifecycleOwner) {
+            if (it.isNullOrEmpty()) {
                 binding?.age?.text = "N/A"
-            }else{
+            } else {
                 binding?.age?.text = it.toString()
             }
         }
@@ -150,7 +157,7 @@ class FilmInfoFragment: Fragment() {
 //                binding?.genre1?.text = it.toString()
 //            }
 //        }
-        viewModel.listRelated.observe(viewLifecycleOwner){
+        viewModel.listRelated.observe(viewLifecycleOwner) {
             loadListRelated(it)
         }
 
@@ -159,30 +166,29 @@ class FilmInfoFragment: Fragment() {
 //        }
 
 
-
         arguments?.getString("id")?.run {
             viewModel.getFilmInfo(this)
         }
     }
 
-    private fun loadListRelated(list:List<Film>){
-        binding?.containerRelated?.run{
+    private fun loadListRelated(list: List<Film>) {
+        binding?.containerRelated?.run {
             layoutManager = LinearLayoutManager(
                 requireContext(),
                 LinearLayoutManager.HORIZONTAL,
                 false
             )
-            adapter = ListFilmsAdapter{
-                parentFragmentManager.beginTransaction()
-                    .replace(R.id.containerView, FilmInfoFragment().apply {
-                        arguments = bundleOf("id" to id)
-                    })
-                    .addToBackStack(null)
-                    .commit()
+            adapter = ListFilmsAdapter {
+//                parentFragmentManager.beginTransaction()
+//                    .replace(R.id.containerView, FilmInfoFragment().apply {
+//                        arguments = bundleOf("id" to id)
+//                    })
+//                    .addToBackStack(null)
+//                    .commit()
+//            }
+                (adapter as ListFilmsAdapter).submitList(list)
             }
-            (adapter as ListFilmsAdapter).submitList(list)
         }
-    }
 
 //    private fun loadListStuff(list: List<PersonInStaff>){
 //        if (list.isNullOrEmpty()){
@@ -200,4 +206,5 @@ class FilmInfoFragment: Fragment() {
 //        }
 //    }
 
+    }
 }

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.clonekinopoisk.domain.FilmsRepository
+import com.example.clonekinopoisk.domain.SharedPreferencesRepository
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -15,6 +16,9 @@ const val PASSWORD_PATTERN = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[-+_!@#$%^&*.
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
 ) : ViewModel() {
+
+    @Inject
+    lateinit var sharedPreferencesRepository: SharedPreferencesRepository
 
 
     private val _emailErrorForRead = MutableLiveData<String?>()
@@ -59,6 +63,7 @@ class SignUpViewModel @Inject constructor(
                 if (task.isSuccessful) {
                     _registrationStateForRead.value = RegistrationState.Success
                     _navigationEventForRead.value = NavigationEvent.NavigateToMainFragment
+                    sharedPreferencesRepository.setUserEmail(email)
 
                 } else {
                     _registrationStateForRead.value = RegistrationState.Error("Что-то пошло не так")
