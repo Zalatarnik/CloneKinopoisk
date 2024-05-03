@@ -68,7 +68,7 @@ class SignUpFragment : Fragment(){
         viewModel.navigationEvent.observe(viewLifecycleOwner) {even ->
             if(even == NavigationEvent.NavigateToMainFragment) {
                 parentFragmentManager.beginTransaction()
-                    .replace(R.id.containerView, ProfileFragment())
+                    .replace(R.id.containerView, TopFilmsFragment())
                     .addToBackStack(null)
                     .commit()
             }

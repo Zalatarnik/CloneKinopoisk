@@ -11,6 +11,8 @@ import androidx.fragment.app.viewModels
 import com.example.clonekinopoisk.R
 import com.example.clonekinopoisk.databinding.FragmentLoginBinding
 import com.example.clonekinopoisk.ui.InfoFilmFragment.FilmInfoFragment
+import com.example.clonekinopoisk.ui.favourite.FavouriteFragment
+import com.example.clonekinopoisk.ui.mainFragment.TopFilmsFragment
 import com.example.clonekinopoisk.ui.profile.ProfileFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -68,7 +70,7 @@ class LoginFragment: Fragment() {
         viewModel.navigationEvent.observe(viewLifecycleOwner) {even ->
             if(even == NavigationEvent.NavigateToMainFragment) {
                 parentFragmentManager.beginTransaction()
-                    .replace(R.id.containerView, ProfileFragment())
+                    .replace(R.id.containerView, FavouriteFragment())
                     .addToBackStack(null)
                     .commit()
             }
