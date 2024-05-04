@@ -8,6 +8,7 @@ import com.example.clonekinopoisk.data.Film
 import com.example.clonekinopoisk.data.FilmFullInfo
 import com.example.clonekinopoisk.domain.FilmsRepository
 import com.example.clonekinopoisk.data.FilmsResponse
+import com.example.clonekinopoisk.data.PersonInStaff
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -36,7 +37,7 @@ class FlmInfoViewModel @Inject constructor(
 
     val listRelated = MutableLiveData<ArrayList<Film>>()
     // val listGenres = MutableLiveData<ArrayList<String>>()
-    // val listPerson = MutableLiveData<List<PersonInStaff>>()
+     val listPerson = MutableLiveData<ArrayList<PersonInStaff>>()
 
 
 
@@ -45,7 +46,7 @@ class FlmInfoViewModel @Inject constructor(
             val response: Response<FilmFullInfo> = repository.getOneFilm(id)
             val idRead = id.toInt()
             val responseRelated: Response<FilmsResponse> = repository.getRelated(id)
-//            val responsePerson: Response<PersonStuffListResponse> = repository.getStuff(idRead)
+            val responsePerson: Response<ArrayList<PersonInStaff>> = repository.getStuff(idRead)
 
 
 
@@ -65,7 +66,7 @@ class FlmInfoViewModel @Inject constructor(
                 ClassForFavourite.postValue(response.body())
                 idThis.postValue(response.body()?.id)
 //                listGenres.postValue(response.body()?.genres)
-//                listPerson.postValue(responsePerson.body()?.people)
+                listPerson.postValue(responsePerson.body())
 
             }
         }

@@ -73,10 +73,10 @@ interface Api {
     //suspend fun getVideoData(@Path("id") id :String): Response<FilmFullInfo>
 
     //Персонал, коллектив
-//    @GET("v1/staff")
-//    @Headers("X-API-KEY: 94465803-dd38-480b-a973-9f3b0062aec9")
-//
-//    suspend fun getStaffData(@Query ("filmId") id: Int): Response<PersonStuffListResponse>
+    @GET("v1/staff")
+    @Headers("X-API-KEY: 94465803-dd38-480b-a973-9f3b0062aec9")
+
+    suspend fun getStaffData(@Query ("filmId") id: Int): Response<ArrayList<PersonInStaff>>
 
 
     //похожие фильмы сериалы

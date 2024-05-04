@@ -16,7 +16,7 @@ class FilmsRepository @Inject constructor(private val api: Api) {
 
     suspend fun getOneFilm(id:String)= api.getOneFilmData(id)
     suspend fun getRelated(id: String) = api.getSimilarsData(id)
-//    suspend fun getStuff(id:Int) = api.ngetStaffData(id)
+    suspend fun getStuff(id:Int) = api.getStaffData(id)
 
     suspend fun searchByKeyword(keyword:String,page:Int)= api.searchByKeyword(keyword,page)
 
