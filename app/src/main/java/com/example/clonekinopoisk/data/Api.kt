@@ -65,12 +65,12 @@ interface Api {
         "Content-Type: application/json")
     suspend fun getOneFilmData(@Path("id") id :String): Response<FilmFullInfo>
 
-    // трейлер
- //   @GET("films/{id}/videos")
-   // @Headers(
-     //   "X-API-KEY: 94465803-dd38-480b-a973-9f3b0062aec9",
-       // "Content-Type: application/json")
-    //suspend fun getVideoData(@Path("id") id :String): Response<FilmFullInfo>
+     //трейлер
+    @GET("v2.2/films/{id}/videos")
+    @Headers(
+        "X-API-KEY: 94465803-dd38-480b-a973-9f3b0062aec9",
+        "Content-Type: application/json")
+    suspend fun getVideoData(@Path("id") id :String): Response<VideoForFilmResponse>
 
     //Персонал, коллектив
     @GET("v1/staff")

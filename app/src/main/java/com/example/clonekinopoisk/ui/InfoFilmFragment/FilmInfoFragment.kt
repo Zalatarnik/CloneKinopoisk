@@ -12,10 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.clonekinopoisk.R
 import com.example.clonekinopoisk.data.Film
-import com.example.clonekinopoisk.data.PersonInStaff
 import com.example.clonekinopoisk.databinding.FragmentFilmInfoBinding
 import com.example.clonekinopoisk.ui.ListFilmsAdapter
-import com.example.clonekinopoisk.ui.PersonInStuffAdapter
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.database.database
@@ -66,6 +64,7 @@ class FilmInfoFragment: Fragment() {
                 }
             }
         }
+
 
 
         viewModel.URLimage.observe(viewLifecycleOwner) { url ->
@@ -155,6 +154,7 @@ class FilmInfoFragment: Fragment() {
         viewModel.listRelated.observe(viewLifecycleOwner) {
             loadListRelated(it)
         }
+
 //        viewModel.listPerson.observe(viewLifecycleOwner){
 //            loadListStuff(it)
 //        }
@@ -163,10 +163,32 @@ class FilmInfoFragment: Fragment() {
         arguments?.getString("id")?.run {
             viewModel.getFilmInfo(this)
         }
+
+
+
+        viewModel.videForFilm.observe(viewLifecycleOwner) { list ->
+            val videoUrl = viewModel.getUrlVideosFromList(list)
+            Log.e("Log1", videoUrl.toString())
+
+            val player = SimpleExoPlayer.Builder(requireContext()).build()
+            binding?.playerView?.player = player
+
+            val mediaItem = MediaItem.fromUri(videoUrl.toString())
+            val mediaSource = DefaultMediaSourceFactory(
+                DefaultHttpDataSource.Factory()
+            ).createMediaSource(mediaItem)
+
+            player.setMediaSource(mediaSource)
+            player.prepare()
+            player.playWhenReady = true
+        }
+
+
+
+
     }
 
     private fun loadListRelated(list: List<Film>) {
-        Toast.makeText(requireContext(), "Лист похожих есть", Toast.LENGTH_SHORT)
         binding?.containerRelated?.run {
             layoutManager = LinearLayoutManager(
                 requireContext(),
