@@ -72,10 +72,6 @@ class SharedPreferencesRepository @Inject constructor(
             clear()
         }
     }
-    fun getInfo(){
-
-    }
-
 }
 
 

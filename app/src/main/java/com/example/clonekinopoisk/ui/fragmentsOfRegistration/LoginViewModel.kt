@@ -34,18 +34,15 @@ class LoginViewModel@Inject constructor(
     private val _navigationEventForRead = MutableLiveData<NavigationEvent>()
     val navigationEvent: LiveData<NavigationEvent> = _navigationEventForRead
 
-
-
     fun login(email: String, password: String) {
         if (email.isBlank()) {
-            _emailErrorForRead.value = "Email is required"
+            _emailErrorForRead.value = "@string/email_is_required"
             return
         }
         if (password.isBlank()) {
-            _passwordErrorForRead.value = "Password is required"
+            _passwordErrorForRead.value = "@string/password_is_required"
             return
         }
-
 
         _emailErrorForRead.value = null
         _passwordErrorForRead.value = null
@@ -58,7 +55,7 @@ class LoginViewModel@Inject constructor(
                     _navigationEventForRead.value = NavigationEvent.NavigateToMainFragment
                     sharedPreferencesRepository.setUserEmail(email)
                 } else {
-                    _registrationStateForRead.value = RegistrationState.Error("Что-то пошло не так")
+                    _registrationStateForRead.value = RegistrationState.Error( "@string/something_went_wrong")
                 }
             }
     }

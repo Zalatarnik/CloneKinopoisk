@@ -5,34 +5,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/searchText"
-        android:layout_width="312dp"
-        android:layout_height="52dp"
-        android:layout_margin="12dp"
-        android:ems="15"
-        android:hint="Enter a search query"
-        android:inputType="text"
-        app:layout_constraintEnd_toStartOf="@+id/searchButton"
-        app:layout_constraintHorizontal_bias="1.0"
+    <TextView
+        android:id="@+id/textSearch"
+        style="@style/titleFragment"
+        android:text="@string/search"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <EditText
+        android:id="@+id/searchText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/sp_80"
+        android:layout_marginStart="@dimen/dp_16"
+        android:ems="15"
+        android:hint="@string/enter_a_search_query"
+        android:inputType="text"
+        app:layout_constraintEnd_toStartOf="@+id/searchButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textSearch" />
+
     <ImageButton
         android:id="@+id/searchButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="12dp"
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginEnd="@dimen/dp_12"
+        android:background="@drawable/rectangle_rounded"
+        android:backgroundTint="@color/orange"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_search" />
+        app:layout_constraintTop_toBottomOf="@+id/textSearch"
+        app:srcCompat="@drawable/ic_search" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        android:padding="16dp"
+        android:padding="@dimen/dp_16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.444"
@@ -42,11 +52,12 @@
 
     <TextView
         android:id="@+id/textNotFound"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Don't found"
-        android:textSize="40dp"
-
+        android:layout_marginTop="@dimen/dp_24"
+        android:text="@string/don_t_found"
+        android:textAlignment="center"
+        android:textSize="@dimen/dp_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

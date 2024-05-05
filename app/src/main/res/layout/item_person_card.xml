@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="10dp"
+    android:backgroundTint="@color/light_grey">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
@@ -13,8 +15,8 @@
             android:id="@+id/imagePersonCard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:paddingBottom="16dp"
+            android:layout_margin="@dimen/dp_16"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
@@ -23,21 +25,22 @@
             android:id="@+id/naePersonCard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:maxWidth="60dp"
-            tools:text="Vince Gilligan"
+            android:layout_margin="@dimen/dp_16"
+            android:maxWidth="80dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imagePersonCard"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Vince Gilligan" />
 
         <TextView
             android:id="@+id/professionPersonCard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:paddingEnd="16dp"
-            tools:text="Режиссеры"
+            android:layout_margin="@dimen/dp_16"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imagePersonCard"
-            app:layout_constraintTop_toBottomOf="@+id/naePersonCard" />
+            app:layout_constraintTop_toBottomOf="@+id/naePersonCard"
+            tools:text="Режиссеры" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

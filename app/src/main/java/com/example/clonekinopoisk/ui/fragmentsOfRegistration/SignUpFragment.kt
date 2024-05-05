@@ -50,20 +50,19 @@ class SignUpFragment : Fragment(){
 
         viewModel.registrationState.observe(viewLifecycleOwner) { state ->
             when(state){
-                RegistrationState.Error("Что-то пошло не так") ->{
-                    Toast.makeText(requireContext(),"Что-то пошло не так", Toast.LENGTH_SHORT).show()
+                RegistrationState.Error("@strings/something_went_wrong") ->{
+                    Toast.makeText(requireContext(),getText(R.string.something_went_wrong), Toast.LENGTH_SHORT).show()
                 }
                 RegistrationState.Loading -> {
 
                 }
                 RegistrationState.Success -> {
-                    Toast.makeText(requireContext(),"Успешно", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(),getText(R.string.successfully), Toast.LENGTH_SHORT).show()
                 }
 
                 else -> {}
             }
         }
-
 
 
         viewModel.navigationEvent.observe(viewLifecycleOwner) {even ->

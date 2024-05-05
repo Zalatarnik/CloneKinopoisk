@@ -1,4 +1,4 @@
-package com.example.clonekinopoisk.data
+package com.example.clonekinopoisk.data.model
 
 import com.google.gson.annotations.SerializedName
 
@@ -9,6 +9,4 @@ data class VideoForFilm(
     val nameVideo: String,
     @SerializedName("site")
     val siteVideo: String
-) {
-
-}
+)

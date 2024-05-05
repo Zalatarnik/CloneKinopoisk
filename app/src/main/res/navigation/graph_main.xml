@@ -56,7 +56,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentWithBottomMenu"
-        android:name="com.example.clonekinopoisk.FragmentWithBottomMenu"
+        android:name="com.example.clonekinopoisk.ui.FragmentWithBottomMenu"
         android:label="FragmentWithBottomMenu" />
 
 </navigation>

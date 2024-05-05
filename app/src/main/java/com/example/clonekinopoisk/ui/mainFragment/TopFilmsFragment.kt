@@ -11,10 +11,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.clonekinopoisk.R
-import com.example.clonekinopoisk.data.Film
+import com.example.clonekinopoisk.data.model.Film
 import com.example.clonekinopoisk.databinding.FragmentTopFilmsBinding
-import com.example.clonekinopoisk.ui.InfoFilmFragment.FilmInfoFragment
-import com.example.clonekinopoisk.ui.ListFilmsAdapter
+import com.example.clonekinopoisk.ui.adapter.ListFilmsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

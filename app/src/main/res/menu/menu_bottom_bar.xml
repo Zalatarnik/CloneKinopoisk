@@ -4,25 +4,26 @@
     <item
         android:id="@+id/homeMenu"
         android:enabled="true"
-        android:icon="@drawable/ic_facebook"
-        android:title="home"/>
+        android:icon="@drawable/ic_home"
+        android:title=""/>
 
     <item
         android:id="@+id/searchMenu"
         android:enabled="true"
-        android:icon="@drawable/ic_facebook"
-        android:title="search" />
+        android:icon="@drawable/ic_search"
+        android:title="" />
+
     <item
         android:id="@+id/favouriteMenu"
         android:enabled="true"
-        android:icon="@drawable/ic_facebook"
-        android:title="favourite" />
+        android:icon="@drawable/ic_favourite_not_active"
+        android:title="" />
+
     <item
         android:id="@+id/profileMenu"
         android:enabled="true"
-        android:icon="@drawable/ic_facebook"
-        android:title="profile" />
-
+        android:icon="@drawable/ic_profile"
+        android:title=""/>
 
 
 </menu>

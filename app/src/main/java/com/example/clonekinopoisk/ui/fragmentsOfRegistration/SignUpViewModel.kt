@@ -1,11 +1,15 @@
 package com.example.clonekinopoisk.ui.fragmentsOfRegistration
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.clonekinopoisk.domain.FilmsRepository
 import com.example.clonekinopoisk.domain.SharedPreferencesRepository
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -37,20 +41,19 @@ class SignUpViewModel @Inject constructor(
 
     fun registerUser(email: String, password: String) {
         if (email.isBlank()) {
-            _emailErrorForRead.value = "Email is required"
+            _emailErrorForRead.value = "@string/email_is_required"
             return
         }
         if (password.isBlank()) {
-            _passwordErrorForRead.value = "Password is required"
+            _passwordErrorForRead.value = "@string/password_is_required"
             return
         }
         if (!email.matches(EMAIL_PATTERN.toRegex())) {
-            _emailErrorForRead.value = "Invalid email format"
+            _emailErrorForRead.value = "@string/invalid_email_format"
             return
         }
         if (!password.matches(PASSWORD_PATTERN.toRegex())) {
-            _passwordErrorForRead.value = "he password must contain at least 6 characters," +
-                    " a large letter,a small letter, a number and a sign"
+            _passwordErrorForRead.value = "@string/invalid_password_format"
             return
         }
 
@@ -64,9 +67,15 @@ class SignUpViewModel @Inject constructor(
                     _registrationStateForRead.value = RegistrationState.Success
                     _navigationEventForRead.value = NavigationEvent.NavigateToMainFragment
                     sharedPreferencesRepository.setUserEmail(email)
+                    Firebase.auth.currentUser!!.sendEmailVerification()
+                        .addOnCompleteListener {
+                            if (it.isSuccessful) {
+                                Log.d(TAG, "@string/Email_sent")
+                            }
+                        }
 
                 } else {
-                    _registrationStateForRead.value = RegistrationState.Error("Что-то пошло не так")
+                    _registrationStateForRead.value = RegistrationState.Error("@string/something_went_wrong")
                 }
             }
     }

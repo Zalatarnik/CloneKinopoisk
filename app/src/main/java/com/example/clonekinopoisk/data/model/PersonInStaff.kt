@@ -1,4 +1,4 @@
-package com.example.clonekinopoisk.data
+package com.example.clonekinopoisk.data.model
 
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
@@ -15,6 +15,4 @@ data class PersonInStaff (
     val posterUrl: String,
     @SerializedName("professionText")
     val professionText: String
-){
-
-}
+)

@@ -2,7 +2,6 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -13,20 +12,16 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/containerNewTop"
             android:layout_width="match_parent"
-            android:layout_height="512dp"
-            android:layout_margin="12dp"
+            android:layout_height="@dimen/dp_500"
+            android:layout_margin="@dimen/dp_12"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/TextViewTopPopFilms"
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:layout_margin="12dp"
-            android:text="Top popular movies"
-            android:textSize="24sp"
-            android:textStyle="bold"
+            style="@style/titleTopFragment"
+            android:text="@string/top_popular_movies"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.091"
             app:layout_constraintStart_toStartOf="parent"
@@ -34,9 +29,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/containerTopPopularMovies"
-            android:layout_width="match_parent"
-            android:layout_height="256dp"
-            android:layout_margin="12dp"
+           style="@style/recyclerTopFragment"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.19"
             app:layout_constraintStart_toStartOf="parent"
@@ -44,12 +37,8 @@
 
         <TextView
             android:id="@+id/textViewTopPopShows"
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:layout_margin="12dp"
-            android:text="Top popular shows"
-            android:textSize="24sp"
-            android:textStyle="bold"
+            style="@style/titleTopFragment"
+            android:text="@string/top_popular_shows"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.068"
             app:layout_constraintStart_toStartOf="parent"
@@ -57,9 +46,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/containerTopPopularShows"
-            android:layout_width="match_parent"
-            android:layout_height="256dp"
-            android:layout_margin="12dp"
+            style="@style/recyclerTopFragment"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.375"
             app:layout_constraintStart_toStartOf="parent"
@@ -67,12 +54,8 @@
 
         <TextView
             android:id="@+id/textViewClosesReleases"
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:layout_margin="12dp"
-            android:text="Closes releases"
-            android:textSize="24sp"
-            android:textStyle="bold"
+            style="@style/titleTopFragment"
+            android:text="@string/closes_releases"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.068"
             app:layout_constraintStart_toStartOf="parent"
@@ -80,9 +63,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/containerClosesReleases"
-            android:layout_width="match_parent"
-            android:layout_height="256dp"
-            android:layout_margin="12dp"
+            style="@style/recyclerTopFragment"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.375"
             app:layout_constraintStart_toStartOf="parent"
@@ -91,11 +72,8 @@
         <TextView
             android:id="@+id/textViewFamily"
             android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:layout_margin="12dp"
-            android:text="For family"
-            android:textSize="24sp"
-            android:textStyle="bold"
+            style="@style/titleTopFragment"
+            android:text="@string/for_family"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.068"
             app:layout_constraintStart_toStartOf="parent"
@@ -103,9 +81,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/containerFamily"
-            android:layout_width="match_parent"
-            android:layout_height="256dp"
-            android:layout_margin="12dp"
+            style="@style/recyclerTopFragment"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.375"
             app:layout_constraintStart_toStartOf="parent"
@@ -113,12 +89,8 @@
 
         <TextView
             android:id="@+id/textViewLoveTheme"
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:layout_margin="12dp"
-            android:text="Love theme"
-            android:textSize="24sp"
-            android:textStyle="bold"
+            style="@style/titleTopFragment"
+            android:text="@string/love_theme"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.068"
             app:layout_constraintStart_toStartOf="parent"
@@ -126,9 +98,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/containerLoveTheme"
-            android:layout_width="match_parent"
-            android:layout_height="256dp"
-            android:layout_margin="12dp"
+            style="@style/recyclerTopFragment"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.375"
             app:layout_constraintStart_toStartOf="parent"
@@ -136,12 +106,8 @@
 
         <TextView
             android:id="@+id/textViewKidsAnimation"
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:layout_margin="12dp"
-            android:text="Kids animation"
-            android:textSize="24sp"
-            android:textStyle="bold"
+            style="@style/titleTopFragment"
+            android:text="@string/kids_animation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.068"
             app:layout_constraintStart_toStartOf="parent"
@@ -149,9 +115,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/containerKidsAnimation"
-            android:layout_width="match_parent"
-            android:layout_height="256dp"
-            android:layout_margin="12dp"
+            style="@style/recyclerTopFragment"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.375"
             app:layout_constraintStart_toStartOf="parent"
