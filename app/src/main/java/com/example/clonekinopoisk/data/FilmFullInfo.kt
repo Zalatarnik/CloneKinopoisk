@@ -6,7 +6,7 @@ data class FilmFullInfo (
     @SerializedName("kinopoiskId")
     val id: String,
     @SerializedName("nameOriginal")
-    val nameOriginal: String,
+    val nameOriginal: String ,
     @SerializedName("nameRu")
     val nameRu: String,
     @SerializedName("ratingKinopoisk")
@@ -24,6 +24,14 @@ data class FilmFullInfo (
     val shortDescription: String,
     @SerializedName("ratingAgeLimits")
     val ratingAgeLimits: String,
-//    @SerializedName("genres")
-//    val genres: ArrayList<String>
-)
+
+){
+    constructor() : this(
+        id ="",
+        nameOriginal = "", nameRu="",
+        rating="", posterUrl="", year="",
+        coverUrl="", slogan="",
+        shortDescription="",
+        ratingAgeLimits="т"
+    )
+}

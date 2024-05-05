@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -58,12 +59,9 @@ class SearchFilmsFragment : Fragment(){
         recyclerView?.apply {
             layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = ListFilmsAdapter { id ->
-                parentFragmentManager.beginTransaction()
-                    .replace(R.id.containerView, FilmInfoFragment().apply {
-                        arguments = bundleOf("id" to id)
-                    })
-                    .addToBackStack(null)
-                    .commit()
+                 findNavController()
+                    .navigate(R.id.action_searchMenu_to_filmInfoFragment2,
+                        bundleOf("id" to id))
             }
             (adapter as ListFilmsAdapter).submitList(list)
         }

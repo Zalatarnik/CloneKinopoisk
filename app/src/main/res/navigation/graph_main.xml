@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/graph_main"
+    app:startDestination="@id/startFragment">
+
+
+    <fragment
+        android:id="@+id/startFragment"
+        android:name="com.example.clonekinopoisk.ui.StartFragment"
+        android:label="StartFragment" >
+        <action
+            android:id="@+id/action_startFragment_to_onboardingFragment"
+            app:destination="@id/onboardingFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_loginFragment2"
+            app:destination="@id/loginFragment2" />
+        <action
+            android:id="@+id/action_startFragment_to_fragmentWithBottomMenu"
+            app:destination="@id/fragmentWithBottomMenu" />
+    </fragment>
+    <fragment
+        android:id="@+id/onboardingFragment"
+        android:name="com.example.clonekinopoisk.ui.onboarding.OnboardingFragment"
+        android:label="OnboardingFragment"
+        tools:layout="@layout/fragment_onboarding">
+        <action
+            android:id="@+id/action_onboardingFragment_to_loginFragment2"
+            app:destination="@id/loginFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment2"
+        android:name="com.example.clonekinopoisk.ui.fragmentsOfRegistration.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment2_to_signUpFragment3"
+            app:destination="@id/signUpFragment3" />
+        <action
+            android:id="@+id/action_loginFragment2_to_fragmentWithBottomMenu"
+            app:destination="@id/fragmentWithBottomMenu" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signUpFragment3"
+        android:name="com.example.clonekinopoisk.ui.fragmentsOfRegistration.SignUpFragment"
+        android:label="SignUpFragment"
+        tools:layout="@layout/fragment_sign_up">
+        <action
+            android:id="@+id/action_signUpFragment3_to_loginFragment2"
+            app:destination="@id/loginFragment2" />
+        <action
+            android:id="@+id/action_signUpFragment3_to_fragmentWithBottomMenu"
+            app:destination="@id/fragmentWithBottomMenu" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentWithBottomMenu"
+        android:name="com.example.clonekinopoisk.FragmentWithBottomMenu"
+        android:label="FragmentWithBottomMenu" />
+
+</navigation>
