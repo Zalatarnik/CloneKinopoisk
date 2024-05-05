@@ -1,4 +1,4 @@
-package com.example.clonekinopoisk
+package com.example.clonekinopoisk.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,10 +7,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.clonekinopoisk.data.Film
-import com.example.clonekinopoisk.data.FilmFullInfo
+import com.example.clonekinopoisk.data.model.FilmFullInfo
 import com.example.clonekinopoisk.databinding.ItemFilmCardViewBinding
-import com.example.clonekinopoisk.ui.ListFilmsAdapter
 
 class ListFavouriteFilmsAdapter (
     private  val onFilmClick:(id:String) -> Unit
@@ -62,6 +60,4 @@ class ListFavouriteFilmsAdapter (
             }
         }
     }
-
-
 }

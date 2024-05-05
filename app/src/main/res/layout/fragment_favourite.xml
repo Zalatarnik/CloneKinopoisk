@@ -7,21 +7,35 @@
 
     <TextView
         android:id="@+id/textFavourite"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Favourite"
-        android:textSize="24dp"
-        android:textStyle="bold"
-        android:padding="24dp"
+        style="@style/titleFragment"
+        android:text="@string/favourite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/containerFavourite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textFavourite"
+        app:layout_constraintVertical_bias="0.0"
+        tools:listitem="@layout/item_film_card_view"/>
+
+    <TextView
+        android:id="@+id/NotFavouriteFilms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_24"
+        android:text="@string/add_your_favorite_movies"
+        android:textAlignment="center"
+        android:textSize="@dimen/dp_24"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

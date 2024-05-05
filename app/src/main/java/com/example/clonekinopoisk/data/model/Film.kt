@@ -1,4 +1,4 @@
-package com.example.clonekinopoisk.data
+package com.example.clonekinopoisk.data.model
 
 import com.google.gson.annotations.SerializedName
 import java.time.Year
@@ -16,6 +16,4 @@ data class Film(
     val posterUrl: String,
     @SerializedName("year")
     val year: String
-
-) {
-}
+)

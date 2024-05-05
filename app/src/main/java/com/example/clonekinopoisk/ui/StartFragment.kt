@@ -30,20 +30,19 @@ class StartFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         when{
-            // первый запуск приложения
+            // first launch of the application
             sharedPreferencesRepository.isFirstLaunch() ->{
                 sharedPreferencesRepository.setIsFirstLaunch()
                 findNavController().navigate(R.id.action_startFragment_to_onboardingFragment)
             }
-            // есди не зещел в ак
+            //if you haven't logged in to the ak
             sharedPreferencesRepository.getUserEmail() == null ->{
                 findNavController().navigate(R.id.action_startFragment_to_loginFragment2)
             }
             else ->{
-                //в ак зашли
+                //logging
                 findNavController().navigate(R.id.action_startFragment_to_fragmentWithBottomMenu)
             }
         }
     }
-
 }

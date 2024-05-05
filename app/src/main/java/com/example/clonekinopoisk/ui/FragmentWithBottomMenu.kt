@@ -1,4 +1,4 @@
-package com.example.clonekinopoisk
+package com.example.clonekinopoisk.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,9 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.clonekinopoisk.R
 import com.example.clonekinopoisk.databinding.FragmentWithBottomMenuBinding
-import com.example.clonekinopoisk.ui.mainFragment.TopFilmsFragment
-import com.example.clonekinopoisk.ui.searchFragment.SearchFilmsFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

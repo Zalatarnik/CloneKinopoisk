@@ -9,13 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.clonekinopoisk.R
-import com.example.clonekinopoisk.data.Film
+import com.example.clonekinopoisk.data.model.FilmWithFilmId
 import com.example.clonekinopoisk.databinding.FragmentSearchFilmsBinding
-import com.example.clonekinopoisk.ui.InfoFilmFragment.FilmInfoFragment
-import com.example.clonekinopoisk.ui.ListFilmsAdapter
+import com.example.clonekinopoisk.ui.adapter.ListFilmsWithFilmIdAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,7 +21,6 @@ class SearchFilmsFragment : Fragment(){
 
     private var binding: FragmentSearchFilmsBinding? = null
     private val viewModel: SearchFilmsViewModel by viewModels ()
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,37 +35,32 @@ class SearchFilmsFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
 
         binding?.searchButton?.setOnClickListener{
-            var str = binding?.searchText?.text.toString()
-            //var keyword = viewModel.urlEncodeString(str.toString())
-
+            val str = binding?.searchText?.text.toString()
             if (str.isEmpty()){
                 binding?.textNotFound?.visibility = View.VISIBLE
             }else{
+                binding?.recyclerView?.visibility = View.VISIBLE
+                binding?.textNotFound?.visibility = View.GONE
                 viewModel.listFound.observe(viewLifecycleOwner){
                     setupRecyclerView(binding?.recyclerView, it)
                 }
                 viewModel.loadInfo(str,1)
-                binding?.recyclerView?.visibility = View.VISIBLE
             }
         }
-
     }
 
-
-    private fun setupRecyclerView(recyclerView: RecyclerView?, list: List<Film>?) {
+    private fun setupRecyclerView(recyclerView: RecyclerView?, list: List<FilmWithFilmId>) {
         recyclerView?.apply {
             layoutManager = GridLayoutManager(requireContext(), 2)
-            adapter = ListFilmsAdapter { id ->
-                 findNavController()
-                    .navigate(R.id.action_searchMenu_to_filmInfoFragment2,
-                        bundleOf("id" to id))
-            }
-            (adapter as ListFilmsAdapter).submitList(list)
-        }
-    }
+            adapter = ListFilmsWithFilmIdAdapter { id ->
+                if(!id.isEmpty()){
+                    findNavController()
+                        .navigate(R.id.action_searchMenu_to_filmInfoFragment2,
+                            bundleOf("id" to "301"))
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        binding = null
+                }
+            }
+            (adapter as? ListFilmsWithFilmIdAdapter)?.submitList(list)
+        }
     }
 }
