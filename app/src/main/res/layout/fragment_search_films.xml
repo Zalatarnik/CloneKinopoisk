@@ -13,29 +13,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginStart="@dimen/dp_12"
+        android:background="@drawable/rectangle_rounded"
+        android:backgroundTint="@color/orange"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textSearch"
+        app:srcCompat="@drawable/ic_search" />
+
+
     <EditText
         android:id="@+id/searchText"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/sp_80"
-        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginStart="@dimen/dp_12"
         android:ems="15"
         android:hint="@string/enter_a_search_query"
         android:inputType="text"
-        app:layout_constraintEnd_toStartOf="@+id/searchButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textSearch" />
-
-    <ImageButton
-        android:id="@+id/searchButton"
-        android:layout_width="@dimen/dp_50"
-        android:layout_height="@dimen/dp_50"
-        android:layout_marginEnd="@dimen/dp_12"
-        android:background="@drawable/rectangle_rounded"
-        android:backgroundTint="@color/orange"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textSearch"
-        app:srcCompat="@drawable/ic_search" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/textSearch" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -57,10 +58,13 @@
         android:layout_marginTop="@dimen/dp_24"
         android:text="@string/don_t_found"
         android:textAlignment="center"
+        android:visibility="gone"
         android:textSize="@dimen/dp_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchText"
         app:layout_constraintVertical_bias="0.192" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,16 +13,15 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
-
-
     @Provides
     @Singleton
     fun provideApi2(): Api {
         return Retrofit.Builder()
             .baseUrl("https://kinopoiskapiunofficial.tech/api/")
             .client(
-                OkHttpClient.Builder().addInterceptor(
-                    HttpLoggingInterceptor().apply {
+                OkHttpClient.Builder()
+                    .addInterceptor(ApiInterceptor())
+                    .addInterceptor(HttpLoggingInterceptor().apply {
                         setLevel(HttpLoggingInterceptor.Level.BODY)
                     }
                 ).build()

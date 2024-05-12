@@ -18,6 +18,7 @@
     <string name="create_your_account">Создайте Свою учетную запись</string>
     <string name="already_have_an_account_sign_in">У вас уже есть учетная запись?
       <font color="#FF5F9AEA">Войдите</font></string>
+    <string name="sign_in">Войдите</string>
     <string name="something_went_wrong">Что-то пошло не так</string>
     <string name="successfully">Успешно</string>
     <string name="email_is_required">Требуется электронная почта</string>
@@ -59,6 +60,11 @@
     <string name="trailer">Tрейлер</string>
     <string name="staff">Персонал</string>
     <string name="n_a">Н/Д</string>
+    <string name="age0">0+</string>
+    <string name="age6">6+</string>
+    <string name="age12">12+</string>
+    <string name="age16">16+</string>
+    <string name="age18">18+</string>
 
 
 </resources>

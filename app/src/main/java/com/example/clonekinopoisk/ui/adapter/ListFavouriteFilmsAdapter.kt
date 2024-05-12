@@ -16,11 +16,11 @@ class ListFavouriteFilmsAdapter (
     : ListAdapter<FilmFullInfo, ListFavouriteFilmsAdapter.ListFilmFavouriteViewHolder>(object : DiffUtil.ItemCallback<FilmFullInfo>(){
 
     override fun areItemsTheSame(oldItem: FilmFullInfo, newItem: FilmFullInfo): Boolean {
-        return false
+        return oldItem.id == newItem.id
     }
 
     override fun areContentsTheSame(oldItem: FilmFullInfo, newItem: FilmFullInfo): Boolean {
-        return false
+        return oldItem == newItem
     }
 }) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListFilmFavouriteViewHolder {
