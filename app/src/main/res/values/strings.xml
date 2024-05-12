@@ -1,3 +1,69 @@
 <resources>
     <string name="app_name">CloneKinopoisk</string>
+
+<!--    onboarding-->
+    <string name="get_started">Get Started</string>
+    <string name="welcome_to_clonekinopoisk">Welcome to CloneKinopoisk</string>
+    <string name="the_best_movie_tracking_app_of_the_century_to_make_your_days_great">The best movie tracking app of the century to make your days great!</string>
+
+<!--    login and signUp-->
+    <string name="don_t_have_an_account_sign_up">Don\'t have an account?
+        <font color="#FF5F9AEA">Sign up</font></string>
+    <string name="login_to_your_account">Login to Your Account</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="create_your_account">Create Your Account</string>
+    <string name="already_have_an_account_sign_in">Already have an account?
+      <font color="#FF5F9AEA">Sign in</font></string>
+    <string name="sign_in">Sign in</string>
+    <string name="something_went_wrong">Something went wrong.</string>
+    <string name="successfully">Successfully</string>
+    <string name="email_is_required">Email is required</string>
+    <string name="password_is_required">Password is required</string>
+    <string name="invalid_email_format">Invalid email format</string>
+    <string name="invalid_password_format">He password must contain at least 6 characters,
+        a large letter,a small letter, a number and a sign</string>
+    <string name="Email_sent.">Email sent.</string>
+
+<!--    profile-->
+    <string name="delete_an_account">Delete an account</string>
+    <string name="name">Name</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="deleted_account">User account deleted</string>
+    <string name="add_an_image">Add an Image</string>
+    <string name="profile">Profile</string>
+
+<!--    favourite-->
+    <string name="favourite">Favourite</string>
+    <string name="add_your_favorite_movies">Add your favorite movies</string>
+
+<!--    search-->
+    <string name="enter_a_search_query">Enter a search query</string>
+    <string name="search">Search</string>
+    <string name="don_t_found">Don\'t found</string>
+
+<!--    top fragment-->
+    <string name="top_popular_movies">Top popular movies</string>
+    <string name="top_popular_shows">Top popular shows</string>
+    <string name="closes_releases">Closes releases</string>
+    <string name="for_family">For family</string>
+    <string name="love_theme">Love theme</string>
+    <string name="kids_animation">Kids animation</string>
+
+<!--    info film fragment-->
+    <string name="error_checking_favorite_movies">Error checking favorite movies</string>
+    <string name="no_data_available">No data available</string>
+    <string name="related">Related</string>
+    <string name="trailer">Trailer</string>
+    <string name="staff">Staff</string>
+    <string name="n_a">N/A</string>
+    <string name="age0">0+</string>
+    <string name="age6">6+</string>
+    <string name="age12">12+</string>
+    <string name="age16">16+</string>
+    <string name="age18">18+</string>
+
+
+
 </resources>

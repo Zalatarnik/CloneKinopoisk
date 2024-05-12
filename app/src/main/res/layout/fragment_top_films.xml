@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/containerNewTop"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_500"
+            android:layout_margin="@dimen/dp_12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/TextViewTopPopFilms"
+            style="@style/titleTopFragment"
+            android:text="@string/top_popular_movies"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.091"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/containerNewTop" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/containerTopPopularMovies"
+           style="@style/recyclerTopFragment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.19"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TextViewTopPopFilms" />
+
+        <TextView
+            android:id="@+id/textViewTopPopShows"
+            style="@style/titleTopFragment"
+            android:text="@string/top_popular_shows"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.068"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/containerTopPopularMovies" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/containerTopPopularShows"
+            style="@style/recyclerTopFragment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.375"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTopPopShows" />
+
+        <TextView
+            android:id="@+id/textViewClosesReleases"
+            style="@style/titleTopFragment"
+            android:text="@string/closes_releases"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.068"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/containerTopPopularShows" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/containerClosesReleases"
+            style="@style/recyclerTopFragment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.375"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewClosesReleases" />
+
+        <TextView
+            android:id="@+id/textViewFamily"
+            android:layout_width="match_parent"
+            style="@style/titleTopFragment"
+            android:text="@string/for_family"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.068"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/containerClosesReleases" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/containerFamily"
+            style="@style/recyclerTopFragment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.375"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewFamily" />
+
+        <TextView
+            android:id="@+id/textViewLoveTheme"
+            style="@style/titleTopFragment"
+            android:text="@string/love_theme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.068"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/containerFamily" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/containerLoveTheme"
+            style="@style/recyclerTopFragment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.375"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewLoveTheme" />
+
+        <TextView
+            android:id="@+id/textViewKidsAnimation"
+            style="@style/titleTopFragment"
+            android:text="@string/kids_animation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.068"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/containerLoveTheme" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/containerKidsAnimation"
+            style="@style/recyclerTopFragment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.375"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewKidsAnimation" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
+
+
