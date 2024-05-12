@@ -1,5 +1,6 @@
 package com.example.clonekinopoisk.ui.InfoFilmFragment
 
+import android.widget.ImageView
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,6 +12,7 @@ import com.example.clonekinopoisk.data.model.Genre
 import com.example.clonekinopoisk.data.model.PersonInStaff
 import com.example.clonekinopoisk.data.model.VideoForFilm
 import com.example.clonekinopoisk.data.response.VideoForFilmResponse
+import com.example.clonekinopoisk.domain.ExtensionRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -21,18 +23,19 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FlmInfoViewModel @Inject constructor(
-    private val repository: FilmsRepository
+    private val repository: FilmsRepository,
+    private val repositoryEx: ExtensionRepository
 ): ViewModel() {
 
-    val ClassForFavourite = MutableLiveData<FilmFullInfo>()
+    val saveForFavourite = MutableLiveData<FilmFullInfo>()
     val idThis = MutableLiveData<String>()
 
-    val URLimage = MutableLiveData<String>()
-    val UrlPoster = MutableLiveData<String>()
+    val imageUrl = MutableLiveData<String>()
+    val posterUrl = MutableLiveData<String>()
 
-    val NameFilmOriginal = MutableLiveData<String>()
-    val NameFilmEnglish = MutableLiveData<String>()
-    val NameFilmRussen = MutableLiveData<String>()
+    val nameFilmOriginal = MutableLiveData<String>()
+    val nameFilmEnglish = MutableLiveData<String>()
+    val nameFilmRussian = MutableLiveData<String>()
 
     val rating = MutableLiveData<String>()
     val year = MutableLiveData<String>()
@@ -44,6 +47,7 @@ class FlmInfoViewModel @Inject constructor(
     val videForFilm = MutableLiveData<ArrayList<VideoForFilm>>()
     val listGenres = MutableLiveData<ArrayList<Genre>>()
     val listPerson = MutableLiveData<ArrayList<PersonInStaff>>()
+
 
 
     fun getUrlVideosFromList(videoList: ArrayList<VideoForFilm>):  String? {
@@ -60,12 +64,12 @@ class FlmInfoViewModel @Inject constructor(
             val responseVideo: Response<VideoForFilmResponse> = repository.getVideo(id)
 
             if (response.isSuccessful) {
-                URLimage.postValue(response.body()?.coverUrl)
-                UrlPoster.postValue(response.body()?.posterUrl)
+                imageUrl.postValue(response.body()?.coverUrl)
+                posterUrl.postValue(response.body()?.posterUrl)
 
-                NameFilmOriginal.postValue(response.body()?.nameOriginal)
-                NameFilmEnglish.postValue(response.body()?.nameEn)
-                NameFilmRussen.postValue(response.body()?.nameRu)
+                nameFilmOriginal.postValue(response.body()?.nameOriginal)
+                nameFilmEnglish.postValue(response.body()?.nameEn)
+                nameFilmRussian.postValue(response.body()?.nameRu)
 
                 rating.postValue(response.body()?.rating)
                 year.postValue(response.body()?.year)
@@ -74,7 +78,7 @@ class FlmInfoViewModel @Inject constructor(
 
                 longDescription.postValue(response.body()?.shortDescription)
 
-                ClassForFavourite.postValue(response.body())
+                saveForFavourite.postValue(response.body())
                 idThis.postValue(response.body()?.id)
                 listGenres.postValue(response.body()?.genres)
             }
@@ -93,13 +97,21 @@ class FlmInfoViewModel @Inject constructor(
         }
     }
 
-    fun changingGenreString(text: String): String{
+    fun changingGenreString(text: String): String {
         val regex = Regex("""(\w+)""")
         val genres = regex.findAll(text)
             .map { it.groupValues[1] }
             .joinToString(", ")
-        val outputString = genres.replace(Regex("Genre, genre, "), "")
-        return outputString
+        return genres.replace(Regex("Genre, genre, "), "")
+    }
+
+    fun choosePoster(imageView: ImageView?) {
+        if (imageUrl.value.isNullOrEmpty()) {
+            repositoryEx.run { imageView?.loadImage(posterUrl.value) }
+        } else {
+            repositoryEx.run { imageView?.loadImage(imageUrl.value) }
+        }
     }
 }
+
 

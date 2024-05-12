@@ -17,11 +17,11 @@ class ListFilmsWithFilmIdAdapter(
     : ListAdapter<FilmWithFilmId, ListFilmsWithFilmIdAdapter.ListFilmsWithFilmIViewHolder>(object : DiffUtil.ItemCallback<FilmWithFilmId>(){
 
     override fun areItemsTheSame(oldItem: FilmWithFilmId, newItem: FilmWithFilmId): Boolean {
-        return false
+        return oldItem.id == newItem.id
     }
 
     override fun areContentsTheSame(oldItem: FilmWithFilmId, newItem: FilmWithFilmId): Boolean {
-        return false
+        return oldItem == newItem
     }
 }) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListFilmsWithFilmIViewHolder {

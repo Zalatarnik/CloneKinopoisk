@@ -17,11 +17,11 @@ class ListFilmsAdapter(
     : ListAdapter<Film, ListFilmsAdapter.ListFilmViewHolder>(object : DiffUtil.ItemCallback<Film>(){
 
     override fun areItemsTheSame(oldItem: Film, newItem: Film): Boolean {
-        return false
+        return oldItem.id == newItem.id
     }
 
     override fun areContentsTheSame(oldItem: Film, newItem: Film): Boolean {
-        return false
+        return oldItem == newItem
     }
 }) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListFilmViewHolder {
@@ -43,6 +43,7 @@ class ListFilmViewHolder(private val binding: ItemFilmCardViewBinding):
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind (film: Film, onFilmClick:(id:String) -> Unit){
+
             if (film.rating.isNullOrEmpty()){
                 binding.ratingFilmCard.text = " "
             }else{

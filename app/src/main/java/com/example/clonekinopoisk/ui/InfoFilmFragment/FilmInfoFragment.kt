@@ -11,8 +11,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import com.example.clonekinopoisk.R
 import com.example.clonekinopoisk.data.model.Film
 import com.example.clonekinopoisk.data.model.PersonInStaff
@@ -25,6 +25,9 @@ import com.google.firebase.database.database
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Locale
 
+const val DEFAULT_URL_IMAGE=
+    "https://avatars.mds.yandex.net/get-kinopoisk-post-img/1374145/09792ccb925715f9b5d85fc22ed445d8/960"
+private const val DEFAULT_URL_VIDEO =  "https://www.youtube.com/"
 @AndroidEntryPoint
 class FilmInfoFragment: Fragment() {
 
@@ -48,7 +51,7 @@ class FilmInfoFragment: Fragment() {
 
 
         // button like
-        var _like = false
+        var like = false
         viewModel.idThis.observe(viewLifecycleOwner) {
             val pathToCheck = "favourite/$userId/favouriteFilms/$it"
 
@@ -57,11 +60,11 @@ class FilmInfoFragment: Fragment() {
                     if (task.result.exists()) {
                         binding?.buttonFavourite?.backgroundTintList =
                             ContextCompat.getColorStateList(requireContext(), R.color.red)
-                        _like = true
+                        like = true
                     } else {
                         binding?.buttonFavourite?.backgroundTintList =
                             ContextCompat.getColorStateList(requireContext(), R.color.not_color)
-                        _like = false
+                        like = false
                     }
                 } else {
                     Toast.makeText(
@@ -73,43 +76,20 @@ class FilmInfoFragment: Fragment() {
             }
         }
 
-
         // Top image
-        viewModel.URLimage.observe(viewLifecycleOwner) { url ->
-            if (url.isNullOrEmpty()) {
-                viewModel.UrlPoster.observe(viewLifecycleOwner) { urlPoster ->
-                    if (urlPoster.isNullOrEmpty()){
-                        binding?.mainImageFilm?.run {
-                            Glide.with(requireContext())
-                                .load("https://avatars.mds.yandex.net/get-kinopoisk-post-img/1374145/09792ccb925715f9b5d85fc22ed445d8/960")
-                                .into(this)
-                        }
-                    }else{
-                        binding?.mainImageFilm?.run {
-                            Glide.with(requireContext())
-                                .load(urlPoster)
-                                .into(this)
-                        }
-                    }
-
-                }
-            } else {
-                binding?.mainImageFilm?.run {
-                    Glide.with(requireContext())
-                        .load(url)
-                        .into(this)
-                }
+        viewModel.imageUrl.observe(viewLifecycleOwner){
+            viewModel.posterUrl.observe(viewLifecycleOwner){
+                viewModel.choosePoster(binding?.mainImageFilm)
             }
         }
 
-        val userLanguage = getLanguage()
-        when (userLanguage) {
+        when (getLanguage()) {
             //If Language = English
             "en" -> {
                 // Name film
-                viewModel.NameFilmOriginal.observe(viewLifecycleOwner) { nameOr ->
+                viewModel.nameFilmOriginal.observe(viewLifecycleOwner) { nameOr ->
                     if (nameOr.isNullOrEmpty()) {
-                        viewModel.NameFilmEnglish.observe(viewLifecycleOwner) { nameEn ->
+                        viewModel.nameFilmEnglish.observe(viewLifecycleOwner) { nameEn ->
                             binding?.nameFilm?.text = nameEn.toString()
                         }
                     } else {
@@ -130,9 +110,9 @@ class FilmInfoFragment: Fragment() {
             //If Language = Russian
             "ru" -> {
                 // Name film
-                viewModel.NameFilmRussen.observe(viewLifecycleOwner) { nameRus ->
+                viewModel.nameFilmRussian.observe(viewLifecycleOwner) { nameRus ->
                     if (nameRus.isNullOrEmpty()) {
-                        viewModel.NameFilmOriginal.observe(viewLifecycleOwner) { nameOr ->
+                        viewModel.nameFilmOriginal.observe(viewLifecycleOwner) { nameOr ->
                             binding?.nameFilm?.text = nameOr.toString()
                         }
                     } else {
@@ -164,34 +144,34 @@ class FilmInfoFragment: Fragment() {
 
         // year
         viewModel.year.observe(viewLifecycleOwner) {
-            binding?.textViewYear?.text = it?.toString()?:"N/A"
+            binding?.textViewYear?.text = it?.toString()?:getString(R.string.n_a)
         }
 
         //Genres
         viewModel.listGenres.observe(viewLifecycleOwner) {
-                binding?.genres?.text = viewModel.changingGenreString(it.toString())?: "N/A"
+                binding?.genres?.text = viewModel.changingGenreString(it.toString())
         }
         // age limits
         viewModel.ageLimits.observe(viewLifecycleOwner) { age ->
             when (age) {
                 "age0" -> {
-                    binding?.age?.text = "0+"
+                    binding?.age?.text = getString(R.string.age0)
                 }
 
                 "age6" -> {
-                    binding?.age?.text = "6+"
+                    binding?.age?.text = getString(R.string.age6)
                 }
 
                 "age12" -> {
-                    binding?.age?.text = "12+"
+                    binding?.age?.text = getString(R.string.age12)
                 }
 
                 "age16" -> {
-                    binding?.age?.text = "16+"
+                    binding?.age?.text = getString(R.string.age16)
                 }
 
                 "age18" -> {
-                    binding?.age?.text = "18+"
+                    binding?.age?.text = getString(R.string.age18)
                 }
 
                 else -> {
@@ -202,7 +182,7 @@ class FilmInfoFragment: Fragment() {
         //video play
         viewModel.videForFilm.observe(viewLifecycleOwner) { list ->
             binding?.buttonTreyler?.setOnClickListener {
-                val videoUrl = viewModel.getUrlVideosFromList(list)?.toString() ?: "https://www.youtube.com/"
+                val videoUrl = viewModel.getUrlVideosFromList(list)?.toString() ?:DEFAULT_URL_VIDEO
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(videoUrl))
                 startActivity(intent)
             }
@@ -227,15 +207,15 @@ class FilmInfoFragment: Fragment() {
 
         // add film in favourite
         binding?.buttonFavourite?.setOnClickListener {
-            viewModel.ClassForFavourite.observe(viewLifecycleOwner) {
+            viewModel.saveForFavourite.observe(viewLifecycleOwner) {
                 if (!userId.isNullOrEmpty()) {
-                    if (_like == false) {
+                    if (!like) {
                         Firebase.database.getReference("favourite")
                             .child(userId)
                             .child("favouriteFilms")
                             .child(it.id)
                             .setValue(it)
-                        _like = true
+                        like = true
                         binding?.buttonFavourite?.backgroundTintList =
                             ContextCompat.getColorStateList(requireContext(), R.color.red)
                     } else {
@@ -244,23 +224,27 @@ class FilmInfoFragment: Fragment() {
                             .child("favouriteFilms")
                             .child(it.id)
                             .removeValue()
-                        _like = false
+                        like = false
                         binding?.buttonFavourite?.backgroundTintList =
                             ContextCompat.getColorStateList(requireContext(), R.color.not_color)
                     }
                 }
             }
         }
+        binding?.buttonBack?.setOnClickListener{
+            findNavController().popBackStack()
+        }
+
         arguments?.getString("id")?.run {
-            viewModel.getFilmInfo(this)
+            viewModel.getFilmInfo(this).run {
+            }
         }
     }
 
 
     private fun getLanguage(): String {
         val currentLocale: Locale = resources.configuration.locale
-        val userLanguage: String = currentLocale.language
-        return userLanguage
+        return currentLocale.language
     }
 
     private fun loadListRelated(list: List<Film>) {
@@ -294,5 +278,6 @@ class FilmInfoFragment: Fragment() {
         }
     }
 }
+
 
 

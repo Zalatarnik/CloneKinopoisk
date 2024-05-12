@@ -16,6 +16,7 @@
     <string name="create_your_account">Create Your Account</string>
     <string name="already_have_an_account_sign_in">Already have an account?
       <font color="#FF5F9AEA">Sign in</font></string>
+    <string name="sign_in">Sign in</string>
     <string name="something_went_wrong">Something went wrong.</string>
     <string name="successfully">Successfully</string>
     <string name="email_is_required">Email is required</string>
@@ -25,7 +26,7 @@
         a large letter,a small letter, a number and a sign</string>
     <string name="Email_sent.">Email sent.</string>
 
-    <!--    profile-->
+<!--    profile-->
     <string name="delete_an_account">Delete an account</string>
     <string name="name">Name</string>
     <string name="sign_out">Sign Out</string>
@@ -42,7 +43,7 @@
     <string name="search">Search</string>
     <string name="don_t_found">Don\'t found</string>
 
-    <!--    top fragment-->
+<!--    top fragment-->
     <string name="top_popular_movies">Top popular movies</string>
     <string name="top_popular_shows">Top popular shows</string>
     <string name="closes_releases">Closes releases</string>
@@ -57,6 +58,12 @@
     <string name="trailer">Trailer</string>
     <string name="staff">Staff</string>
     <string name="n_a">N/A</string>
+    <string name="age0">0+</string>
+    <string name="age6">6+</string>
+    <string name="age12">12+</string>
+    <string name="age16">16+</string>
+    <string name="age18">18+</string>
+
 
 
 </resources>
