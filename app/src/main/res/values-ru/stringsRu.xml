@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CloneKinopoisk</string>
+
+    <!--    onboarding-->
+    <string name="get_started">Начать</string>
+    <string name="welcome_to_clonekinopoisk">Добро пожаловать на CloneKinopoisk</string>
+    <string name="the_best_movie_tracking_app_of_the_century_to_make_your_days_great">
+        Лучшее приложение для отслеживания фильмов, которое сделает ваши дни незабываемыми!</string>
+
+    <!--    login and signUp-->
+    <string name="don_t_have_an_account_sign_up">У вас нет учетной записи?
+        <font color="#FF5F9AEA">Зарегистрируйтесь</font></string>
+    <string name="login_to_your_account">Войдите в свою учетную запись</string>
+    <string name="email">Электронная почта</string>
+    <string name="password">Пароль</string>
+    <string name="sign_up">Зарегистрируйтесь</string>
+    <string name="create_your_account">Создайте Свою учетную запись</string>
+    <string name="already_have_an_account_sign_in">У вас уже есть учетная запись?
+      <font color="#FF5F9AEA">Войдите</font></string>
+    <string name="sign_in">Войдите</string>
+    <string name="something_went_wrong">Что-то пошло не так</string>
+    <string name="successfully">Успешно</string>
+    <string name="email_is_required">Требуется электронная почта</string>
+    <string name="password_is_required">Требуется ввести пароль</string>
+    <string name="invalid_email_format">Неверный формат электронной почты</string>
+    <string name="invalid_password_format">Пароль должен содержать не менее 6 символов,
+большую букву, маленькую букву, цифру и знак</string>
+    <string name="Email_sent.">Электронное письмо отправлено</string>
+
+    <!--    profile-->
+    <string name="delete_an_account">Удалить учетную запись</string>
+    <string name="name">Имя</string>
+    <string name="sign_out">Выйти из учетной записи</string>
+    <string name="deleted_account">Удалена учетная запись пользователя</string>
+    <string name="add_an_image">Добавить изображение</string>
+    <string name="profile">Профиль</string>
+
+    <!--    favourite-->
+    <string name="favourite">Любимые</string>
+    <string name="add_your_favorite_movies">Добавьте свои любимые фильмы</string>
+
+    <!--    search-->
+    <string name="enter_a_search_query">Введите поисковый запрос</string>
+    <string name="search">Поиск</string>
+    <string name="don_t_found">Ничего не найдено</string>
+
+    <!--    top fragment-->
+    <string name="top_popular_movies">Самые популярные фильмы</string>
+    <string name="top_popular_shows">Самые популярные шоу</string>
+    <string name="closes_releases">Закрывает выпуски</string>
+    <string name="for_family">Для всей семьи</string>
+    <string name="love_theme">Любовная тема</string>
+    <string name="kids_animation">Детская анимация</string>
+
+    <!--    info film fragment-->
+    <string name="error_checking_favorite_movies">Ошибка при проверке любимых фильмов</string>
+    <string name="no_data_available">Нет доступных данных</string>
+    <string name="related">Похожие</string>
+    <string name="trailer">Tрейлер</string>
+    <string name="staff">Персонал</string>
+    <string name="n_a">Н/Д</string>
+    <string name="age0">0+</string>
+    <string name="age6">6+</string>
+    <string name="age12">12+</string>
+    <string name="age16">16+</string>
+    <string name="age18">18+</string>
+
+
+</resources>

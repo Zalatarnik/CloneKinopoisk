@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/graph_bottom_navigation"
+    app:startDestination="@id/homeMenu">
+
+    <fragment
+        android:id="@+id/homeMenu"
+        android:name="com.example.clonekinopoisk.ui.mainFragment.TopFilmsFragment"
+        android:label="TopFilmsFragment"
+        tools:layout="@layout/fragment_top_films">
+        <action
+            android:id="@+id/action_homeMenu_to_filmInfoFragment2"
+            app:destination="@id/filmInfoFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchMenu"
+        android:name="com.example.clonekinopoisk.ui.searchFragment.SearchFilmsFragment"
+        android:label="SearchFilmsFragment"
+        tools:layout="@layout/fragment_search_films">
+        <action
+            android:id="@+id/action_searchMenu_to_filmInfoFragment2"
+            app:destination="@id/filmInfoFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/favouriteMenu"
+        android:name="com.example.clonekinopoisk.ui.favourite.FavouriteFragment"
+        android:label="FavouriteFragment"
+        tools:layout="@layout/fragment_favourite">
+        <action
+            android:id="@+id/action_favouriteMenu_to_filmInfoFragment2"
+            app:destination="@id/filmInfoFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileMenu"
+        android:name="com.example.clonekinopoisk.ui.profile.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile"/>
+    <fragment
+        android:id="@+id/filmInfoFragment2"
+        android:name="com.example.clonekinopoisk.ui.InfoFilmFragment.FilmInfoFragment"
+        android:label="FilmInfoFragment"
+        tools:layout="@layout/fragment_film_info"/>
+
+
+</navigation>
