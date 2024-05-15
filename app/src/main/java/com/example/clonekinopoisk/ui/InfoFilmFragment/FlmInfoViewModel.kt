@@ -12,7 +12,7 @@ import com.example.clonekinopoisk.data.model.Genre
 import com.example.clonekinopoisk.data.model.PersonInStaff
 import com.example.clonekinopoisk.data.model.VideoForFilm
 import com.example.clonekinopoisk.data.response.VideoForFilmResponse
-import com.example.clonekinopoisk.domain.ExtensionRepository
+import com.example.clonekinopoisk.domain.loadImage
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -23,8 +23,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FlmInfoViewModel @Inject constructor(
-    private val repository: FilmsRepository,
-    private val repositoryEx: ExtensionRepository
+    private val repository: FilmsRepository
 ): ViewModel() {
 
     val saveForFavourite = MutableLiveData<FilmFullInfo>()
@@ -49,9 +48,9 @@ class FlmInfoViewModel @Inject constructor(
     val listPerson = MutableLiveData<ArrayList<PersonInStaff>>()
 
 
-
-    fun getUrlVideosFromList(videoList: ArrayList<VideoForFilm>):  String? {
-        val youtubeVideos = videoList.filterList  { siteVideo == "YOUTUBE" || siteVideo == "YANDEX_DISK"}
+    fun getUrlVideosFromList(videoList: ArrayList<VideoForFilm>): String? {
+        val youtubeVideos =
+            videoList.filterList { siteVideo == "YOUTUBE" || siteVideo == "YANDEX_DISK" }
         return youtubeVideos.firstOrNull()?.urlVideo
     }
 
@@ -83,15 +82,15 @@ class FlmInfoViewModel @Inject constructor(
                 listGenres.postValue(response.body()?.genres)
             }
 
-            if(responsePerson.isSuccessful){
+            if (responsePerson.isSuccessful) {
                 listPerson.postValue(responsePerson.body())
             }
 
-            if(responseRelated.isSuccessful) {
+            if (responseRelated.isSuccessful) {
                 listRelated.postValue(responseRelated.body()?.items)
             }
 
-            if(responseVideo.isSuccessful){
+            if (responseVideo.isSuccessful) {
                 videForFilm.postValue(responseVideo.body()?.items)
             }
         }
@@ -107,11 +106,13 @@ class FlmInfoViewModel @Inject constructor(
 
     fun choosePoster(imageView: ImageView?) {
         if (imageUrl.value.isNullOrEmpty()) {
-            repositoryEx.run { imageView?.loadImage(posterUrl.value) }
-        } else {
-            repositoryEx.run { imageView?.loadImage(imageUrl.value) }
+            imageView?.loadImage(posterUrl.value)
+        }else{
+            imageView?.loadImage(imageUrl.value)
         }
     }
 }
+
+
 
 
